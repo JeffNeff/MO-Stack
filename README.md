@@ -8,6 +8,7 @@
 * Open the Env. in VScode.
 * Execute the following:
 ```
+chmod +x ./run.sh
 ADDRESS=0x5bbfa5724260Cb175cB39b24802A04c3bfe72eb3 ./run.sh
 ```
 
