@@ -37,4 +37,4 @@ echo '{
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
 }' > genesis.json
 
-nohup besu --data-path=data --bootnodes=enode://0c53a65b8b98c95698e05b62c97c180b3b6febae1d7b516e7047f7c36c373e0bbed38c2c83b2b9a264a375886fb2c6a44e26938b1bee4c8e23e788938b49e00a@134.215.244.171:60606 --genesis-file=genesis.json --miner-stratum-enabled --miner-stratum-host=0.0.0.0 --miner-stratum-port=50001 --miner-enabled=true --miner-coinbase=$ADDRESS --rpc-http-host=0.0.0.0  --rpc-http-enabled=true  &
+nohup /home/$USER/besu-22.7.4/bin/besu --data-path=data --bootnodes=enode://0c53a65b8b98c95698e05b62c97c180b3b6febae1d7b516e7047f7c36c373e0bbed38c2c83b2b9a264a375886fb2c6a44e26938b1bee4c8e23e788938b49e00a@134.215.244.171:60606 --genesis-file=genesis.json --miner-stratum-enabled --miner-stratum-host=0.0.0.0 --miner-stratum-port=50001 --miner-enabled=true --miner-coinbase=$ADDRESS --rpc-http-host=0.0.0.0  --rpc-http-enabled=true --p2p-enabled=true --p2p-port=60606 --p2p-host=0.0.0.0 &
