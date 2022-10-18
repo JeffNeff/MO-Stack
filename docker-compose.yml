@@ -58,10 +58,10 @@ services:
     image: prom/prometheus:v2.21.0
     depends_on:
       - mineonlium
-    # volumes:
-      # - ./prometheus/:/etc/prometheus
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      # - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
