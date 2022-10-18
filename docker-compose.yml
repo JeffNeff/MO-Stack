@@ -79,7 +79,8 @@ services:
       - MONGO_CREATE_INDICES=true
     depends_on:
       - mongodb
-
+    ports:
+      - 8081:8081
   
   mongodb:
     image: mongo:5.0.8
@@ -94,6 +95,8 @@ services:
       - API_URL=/api
     depends_on:
       - api
+    ports:
+      - 3000:3000
 
   
   ingestion:
@@ -106,16 +109,7 @@ services:
       - mongodb
 
       
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./5xx.html:/www/error_pages/5xx.html
-    ports:
-      - 80:80
-    depends_on:
-      - api
-      - web
+
 
 
 
