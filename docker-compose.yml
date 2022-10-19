@@ -98,7 +98,6 @@ services:
     ports:
       - 3000:3000
 
-  
   ingestion:
     image: web3labs/epirus-free-ingestion:latest
     environment:
@@ -108,8 +107,59 @@ services:
     depends_on:
       - mongodb
 
-      
+## Eth Stats
+  server:
+    container_name: ethstats-network-server
+    image: alethio/ethstats-network-server:latest
+    restart: always
+    depends_on:
+      - deepstream
+      -  es-redis
+    ports:
+      - 3000
+      - 3030:3030
+      - 8888:8888
+    environment:
+      - NETWORK_ID=54321
+      - NETWORK_NAME=mineonlium
+      - LITE=1
+      - LITE_DB_PERSIST=1
+      - LITE_API_PORT=3030
+      - APP_PORT=3000
+      - METRICS_PORT=8888
+      - DEEPSTREAM_HOST=deepstream
+      - REDIS_HOST=redis
+    command: ["./bin/app.js", "-v"]
 
+  deepstream:
+    container_name: ethstats-network-deepstream
+    image: deepstreamio/deepstream.io:3.2.2
+    restart: always
+    ports:
+      - 6020:6020
+
+  es-redis:
+    image: redis:alpine
+    restart: always
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ../../../.cache:/data
+
+  dashboard:
+    container_name: ethstats-network-dashboard
+    image: alethio/ethstats-network-dashboard:latest
+    restart: always
+    depends_on:
+      - server
+    volumes:
+      - ../../config/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80
+    environment:
+      - NETSTATS_API_URL=http://server:3030
+      - DS_URL=es-redis:6020
+      - DS_USER=frontend
+      - DS_PASS=
 
 
 
