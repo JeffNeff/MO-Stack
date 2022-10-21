@@ -12,6 +12,6 @@ Deploy the MineOnlium stack in two commands :)
 # Services Rendered:
 * [Grafana](https://grafana.com/): http://localhost:3001
 * [Prometeus](https://prometheus.io/): (push gateway) : http://localhost:9091
-* BlockExplorer: http://localhost:3000
+* BlockExplorer: http://localhost
 * BlockExplorer API: http://localhost:8081
 * Stratum Mining Server: http://localhost:50001
