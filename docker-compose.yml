@@ -134,6 +134,7 @@ services:
         INDEXER_CATCHUP_BLOCKS_BATCH_SIZE: 250
         # SECRET_KEY_BASE: '56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN'
         CHAIN_ID: '54321'
+        NETWORK: MineOnlium
     ports:
       - 4000:4000
 
